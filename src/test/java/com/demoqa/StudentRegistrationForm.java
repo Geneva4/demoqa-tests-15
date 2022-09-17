@@ -1,15 +1,16 @@
 package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
-import com.sun.jdi.ByteValue;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
-public class StudentRegistrationForm {
+ public class StudentRegistrationForm {
 
     @BeforeAll
     static void setUp() {
@@ -19,15 +20,20 @@ public class StudentRegistrationForm {
     }
     @Test
     void fillFormTest() {
+
         open("automation-practice-form");
         $("#firstName").setValue("Evgenii");
         $("#lastName").setValue("Milshin");
         $("#userEmail").setValue("zhenyamilshin@gmail.com");
         $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("89107479861");
+        $("#userNumber").setValue("9107479861");
         $("[id=dateOfBirthInput]").click();
-        $(".react-datepicker__month-select").selectOption("March");
         $(".react-datepicker__year-select").selectOption("2000");
+        $(".react-datepicker__month-select").selectOption("March");
+        $(".react-datepicker__day--016").click();
+        $("#subjectsInput").setValue("Maths").pressEnter();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#uploadPicture").uploadFile("I0maveeKh8M.jpg");
 
 
 
