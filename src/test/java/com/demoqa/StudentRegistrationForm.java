@@ -33,10 +33,14 @@ import static com.codeborne.selenide.Selenide.open;
         $(".react-datepicker__day--016").click();
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
-        $("#uploadPicture").uploadFile("I0maveeKh8M.jpg");
+        $("#uploadPicture").uploadFromClasspath("23.jpg");
+        $("#currentAddress").setValue("г.Курск, ул.Сторожевая 6А");
 
+        $("#state").click();
+        $("#stateCity-wrapper").$(byText("Haryana")).click();
 
-
+        $("#city").click();
+        $("#stateCity-wrapper").$(byText("Karnal")).click();
     }
 
 }
