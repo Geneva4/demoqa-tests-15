@@ -1,11 +1,13 @@
 package com.demoqa;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.conditions.Text;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -16,7 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
     static void setUp() {
         Configuration.baseUrl = "https://demoqa.com/";
         Configuration.holdBrowserOpen =  true;
-        Configuration.browserSize = "1265x689";
+        Configuration.browserSize = "1920x1080";
     }
     @Test
     void fillFormTest() {
@@ -47,6 +49,31 @@ import static com.codeborne.selenide.Selenide.open;
 
         $("#city").click();
         $("#stateCity-wrapper").$(byText("Karnal")).click();
+
+        $("#submit").click();
+        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave((text("Evgenii Milshin")),
+
+                text("zhenyamilshin@gmail.com"),
+                text("Male"),
+                text("9107479861"),
+                text("16 March,2000"),
+                text("Maths"),
+                text("Reading"),
+                text("23.jpg"),
+                text("г.Курск, ул.Сторожевая 6А"),
+                text("Haryana Karnal"));
+
+        $("#closeLargeModal").click();
+
+
+
+
+
+
+
+
+
     }
 
 }
