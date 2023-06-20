@@ -12,31 +12,24 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class StudentRegistrationForm {
+    Configurations web = new Configurations();
 
     @BeforeAll
-    static void setUp() {
-        Configuration.baseUrl = "https://demoqa.com/";
-        Configuration.holdBrowserOpen =  true;
-        Configuration.browserSize = "1920x1080";
+    static void conf() {
+        Configurations web = new Configurations();
+        web.browserConfig();
     }
+
     @Test
     void fillFormTest() {
 
-        open("automation-practice-form");
-        executeJavaScript("$('footer').remove()");
-
-        $("#firstName").setValue("Evgenii");
-        $("#lastName").setValue("Milshin");
-
-        $("#userEmail").setValue("zhenyamilshin@gmail.com");
-        $("#genterWrapper").$(byText("Male")).click();
-
-        $("#userNumber").setValue("9107479861");
-        $("[id=dateOfBirthInput]").click();
-
-        $(".react-datepicker__year-select").selectOption("2000");
-        $(".react-datepicker__month-select").selectOption("March");
-        $(".react-datepicker__day--016").click();
+        web.openBrowser();
+        web.enterYourName("Evgenii");
+        web.enterYourLastname("Milshin");
+        web.enterYourEmail("zhenyamilshin@gmail.com");
+        web.enterYourGender("Female");
+        web.enterYourNumber("9107479861");
+        web.enterYourBirthDate("2000", "March", "13");
 
         $("#subjectsInput").setValue("Maths").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
@@ -65,13 +58,6 @@ public class StudentRegistrationForm {
                 text("Haryana Karnal"));
 
         $("#closeLargeModal").click();
-
-
-
-
-
-
-
 
 
     }
